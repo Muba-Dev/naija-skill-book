@@ -79,6 +79,8 @@ export interface SearchFilters {
 
 export type ViewType =
   | 'landing'
+  | 'login'
+  | 'register'
   | 'search'
   | 'artisan-detail'
   | 'customer-dashboard'

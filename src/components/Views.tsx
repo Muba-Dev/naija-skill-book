@@ -769,6 +769,187 @@ function ProfileSettings({ onNavigate }: { onNavigate: (v: ViewType, p?: Record<
   );
 }
 
+/* ─── LOGIN VIEW ─── */
+function LoginView({ onNavigate }: { onNavigate: (v: ViewType, p?: Record<string, string>) => void }) {
+  return (
+    <div className="flex min-h-[80vh] items-center justify-center px-4 py-12">
+      <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }} className="w-full max-w-md">
+        <div className="rounded-2xl border border-emerald-100 bg-white p-8 shadow-lg">
+          <div className="mb-6 text-center">
+            <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50">
+              <Sparkles className="h-7 w-7 text-emerald-700" />
+            </div>
+            <h1 className="text-2xl font-bold text-emerald-900">Welcome Back</h1>
+            <p className="mt-1 text-sm text-gray-500">Sign in to manage your bookings and projects.</p>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" placeholder="you@example.com" className="h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+              <input type="password" placeholder="••••••••" className="h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" />
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex cursor-pointer items-center gap-2 text-gray-600">
+                <input type="checkbox" className="h-4 w-4 rounded border-gray-300 text-emerald-600" /> Remember me
+              </label>
+              <button className="font-medium text-emerald-700 hover:underline">Forgot password?</button>
+            </div>
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={() => onNavigate('customer-dashboard')}
+              className="h-12 w-full rounded-xl bg-emerald-700 text-base font-semibold text-white hover:bg-emerald-800 active:bg-emerald-900"
+            >
+              Sign In <ArrowRight className="ml-1 inline h-5 w-5" />
+            </motion.button>
+          </div>
+          <div className="mt-6 text-center text-sm text-gray-500">
+            Don't have an account?{' '}
+            <button onClick={() => onNavigate('register')} className="font-medium text-emerald-700 hover:underline">Sign Up</button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ─── REGISTER VIEW ─── */
+function RegisterView({ onNavigate }: { onNavigate: (v: ViewType, p?: Record<string, string>) => void }) {
+  const [role, setRole] = useState<'customer' | 'artisan'>('customer');
+  return (
+    <div className="flex min-h-[80vh] items-center justify-center px-4 py-12">
+      <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }} className="w-full max-w-md">
+        <div className="rounded-2xl border border-emerald-100 bg-white p-8 shadow-lg">
+          <div className="mb-6 text-center">
+            <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50">
+              <Sparkles className="h-7 w-7 text-emerald-700" />
+            </div>
+            <h1 className="text-2xl font-bold text-emerald-900">Create Account</h1>
+            <p className="mt-1 text-sm text-gray-500">Join thousands of Nigerians finding and providing skilled services.</p>
+          </div>
+          <div className="mb-6 flex rounded-xl bg-emerald-50 p-1">
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setRole('customer')}
+              className={`flex-1 rounded-lg py-2.5 text-sm font-medium transition-all ${role === 'customer' ? 'bg-white text-emerald-800 shadow-sm' : 'text-gray-500 hover:text-emerald-700'}`}
+            >
+              <User className="mr-1 inline h-4 w-4" /> Customer
+            </motion.button>
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setRole('artisan')}
+              className={`flex-1 rounded-lg py-2.5 text-sm font-medium transition-all ${role === 'artisan' ? 'bg-white text-emerald-800 shadow-sm' : 'text-gray-500 hover:text-emerald-700'}`}
+            >
+              <Briefcase className="mr-1 inline h-4 w-4" /> Artisan
+            </motion.button>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Full Name</label>
+              <input type="text" placeholder="Kelechi Okafor" className="h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" placeholder="you@example.com" className="h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Phone Number</label>
+              <input type="tel" placeholder="+234 812 345 6789" className="h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+              <input type="password" placeholder="Create a strong password" className="h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" />
+            </div>
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={() => onNavigate(role === 'artisan' ? 'artisan-dashboard' : 'customer-dashboard')}
+              className="h-12 w-full rounded-xl bg-emerald-700 text-base font-semibold text-white hover:bg-emerald-800 active:bg-emerald-900"
+            >
+              Create Account <ArrowRight className="ml-1 inline h-5 w-5" />
+            </motion.button>
+          </div>
+          <div className="mt-6 text-center text-sm text-gray-500">
+            Already have an account?{' '}
+            <button onClick={() => onNavigate('login')} className="font-medium text-emerald-700 hover:underline">Sign In</button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ─── ARTISAN DASHBOARD ─── */
+function ArtisanDashboard({ onNavigate }: { onNavigate: (v: ViewType, p?: Record<string, string>) => void }) {
+  const [tab, setTab] = useState<'overview' | 'jobs' | 'earnings'>('overview');
+  return (
+    <div className="min-h-[80vh] bg-gray-50/50 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-emerald-900">Artisan Dashboard</h1>
+          <p className="text-sm text-gray-500">Manage your services, jobs, and earnings.</p>
+        </div>
+        <div className="mb-6 grid gap-4 sm:grid-cols-3">
+          {[
+            { label: 'Active Jobs', value: '3', icon: Briefcase, color: 'bg-emerald-50 text-emerald-700' },
+            { label: 'Completed', value: '47', icon: CheckCircle2, color: 'bg-blue-50 text-blue-700' },
+            { label: 'Earnings (MTD)', value: '₦185,000', icon: CreditCard, color: 'bg-amber-50 text-amber-700' },
+          ].map(s => (
+            <div key={s.label} className="rounded-xl border border-emerald-100 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-4">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${s.color}`}>
+                  <s.icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-emerald-900">{s.value}</p>
+                  <p className="text-xs text-gray-500">{s.label}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-1 rounded-xl bg-emerald-50 p-1">
+          {(['overview', 'jobs', 'earnings'] as const).map(t => (
+            <motion.button
+              key={t}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setTab(t)}
+              className={`min-h-[44px] flex-1 rounded-lg text-sm font-medium transition-all ${
+                tab === t ? 'bg-white text-emerald-800 shadow-sm' : 'text-gray-500 hover:text-emerald-700'
+              }`}
+            >
+              {t === 'overview' ? 'Recent Jobs' : t === 'jobs' ? 'Job Requests' : 'Earnings'}
+            </motion.button>
+          ))}
+        </div>
+        <div className="mt-4">
+          <div className="rounded-xl border border-emerald-100 bg-white px-6 py-10 text-center text-sm text-gray-500">
+            {tab === 'overview' && (
+              <><Briefcase className="mx-auto mb-2 h-8 w-8 text-gray-300" /> No recent jobs yet. Update your services to start receiving requests.</>
+            )}
+            {tab === 'jobs' && (
+              <><Clock className="mx-auto mb-2 h-8 w-8 text-gray-300" /> No pending job requests at this time.</>
+            )}
+            {tab === 'earnings' && (
+              <><CreditCard className="mx-auto mb-2 h-8 w-8 text-gray-300" /> Earnings breakdown will appear here once you complete jobs.</>
+            )}
+          </div>
+        </div>
+        <div className="mt-6 flex gap-3">
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={() => onNavigate('profile-settings')}
+            className="min-h-[44px] rounded-xl bg-emerald-700 px-6 text-sm font-medium text-white hover:bg-emerald-800"
+          >
+            <Settings className="mr-1 inline h-4 w-4" /> Manage Services
+          </motion.button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── NOT FOUND ─── */
 function NotFound({ onNavigate }: { onNavigate: (v: ViewType, p?: Record<string, string>) => void }) {
   return (
@@ -776,7 +957,13 @@ function NotFound({ onNavigate }: { onNavigate: (v: ViewType, p?: Record<string,
       <AlertTriangle className="h-16 w-16 text-gray-300" />
       <h1 className="text-2xl font-bold text-gray-700">Page Not Found</h1>
       <p className="text-sm text-gray-500">The page you're looking for doesn't exist.</p>
-      <Button onClick={() => onNavigate('landing')} className="bg-emerald-700 text-white hover:bg-emerald-800">Go Home</Button>
+      <motion.button
+        whileTap={{ scale: 0.97 }}
+        onClick={() => onNavigate('landing')}
+        className="min-h-[44px] rounded-xl bg-emerald-700 px-6 text-sm font-medium text-white hover:bg-emerald-800"
+      >
+        Go Home
+      </motion.button>
     </div>
   );
 }
@@ -805,8 +992,14 @@ export default function Views({
         return <SearchView onNavigate={onNavigate} searchQuery={searchQuery} onSearchChange={onSearchChange} filters={filters} onFilterChange={onFilterChange} />;
       case 'artisan-detail':
         return <ArtisanDetailView artisanId={viewParams.id || ''} onNavigate={onNavigate} />;
+      case 'login':
+        return <LoginView onNavigate={onNavigate} />;
+      case 'register':
+        return <RegisterView onNavigate={onNavigate} />;
       case 'customer-dashboard':
         return <CustomerDashboard onNavigate={onNavigate} />;
+      case 'artisan-dashboard':
+        return <ArtisanDashboard onNavigate={onNavigate} />;
       case 'booking-history':
         return <BookingHistory onNavigate={onNavigate} />;
       case 'profile-settings':
